@@ -1,5 +1,4 @@
-#ifndef fast_fourier_transfrom_call_pricer_h
-#define fast_fourier_transfrom_call_pricer_h
+#pragma once
 #include "global_variables.h"
 #include <iostream>
 #include <complex>
@@ -97,7 +96,6 @@ double* fft_call_pricer(int N, double eta, double alpha, double S0, double tau, 
     // ========== initialization ==========
     double lambda = 2*PI / (N * eta);
     double beta = log(S0) - lambda * N / 2; // beta:= -b + log(S0)
-    // fourier transform modified call option price
     
     complex<double> *parameter = new complex<double>[N];
     
@@ -124,8 +122,9 @@ double* fft_call_pricer(int N, double eta, double alpha, double S0, double tau, 
     double* sim_c_arr = new double[N]; // sim_c_arr:= simulated call option price array
     double* sim_k_arr = new double[N]; // sim_k_arr:= simulated log strike price array
     for(int idx=0; idx<N; idx++){
-        sim_k_arr[idx] = beta + lambda*idx;
-        sim_c_arr[idx] = (exp(-alpha * sim_k_arr[idx]) / PI) * fft_prices[idx].real();
+        double log_strike = beta + lambda*idx;
+        sim_k_arr[idx] = exp(log_strike);
+        sim_c_arr[idx] = (exp(-alpha * log_strike) / PI) * fft_prices[idx].real();
     }
     
     // ========== interpolation ==========
@@ -137,5 +136,3 @@ double* fft_call_pricer(int N, double eta, double alpha, double S0, double tau, 
     }
     return call_prices;
 }
-
-#endif /* fast_fourier_transfrom_call_pricer_h */

@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     
     // option contract
     double r = 0.06;
-    double tau = 0.04;
+    double tau = 0.4;
     double d = 0.01;
     double n_contract = 7;
     double sigma = 0.2;

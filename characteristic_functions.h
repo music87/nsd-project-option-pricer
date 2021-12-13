@@ -1,5 +1,4 @@
-#ifndef characteristic_functions_h
-#define characteristic_functions_h
+#pragma once
 #include "global_variables.h"
 #include <iostream>
 #include <complex>
@@ -27,4 +26,3 @@ void chf_bates(){
     cout << "it's the characteristic function of Bates" << endl;
 }
 
-#endif /* characteristic_functions_h */

@@ -1,5 +1,2 @@
-#ifndef global_variables_h
-#define global_variables_h
+#pragma once
 #define PI 3.14159265358979323846
-
-#endif /* global_variables_h */
