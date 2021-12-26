@@ -10,7 +10,7 @@ PYSUFFIX = `python3-config --extension-suffix`
 
 .PHONY: test clean
 
-all: $(TARGET)
+all: $(TESTDIR)/$(TARGET)
 
 $(TESTDIR)/$(TARGET): $(SRCDIR)/$(TARGET).cpp $(HEADERS)
 	$(CXX) $(CFLAG) $(PYINCLUDE) $< -o $@$(PYSUFFIX)

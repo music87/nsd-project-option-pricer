@@ -6,7 +6,7 @@
 using namespace std;
 
 complex<double>* chf_black_scholes(complex<double> *x_arr, int n, double S0, double tau, double r, double d, double sigma){
-    cout << "it's the characteristic function of Black Scholes" << endl;
+    //cout << "it's the characteristic function of Black Scholes" << endl;
     complex<double> *result = new complex<double>[n];
     for(int idx=0; idx<n; idx++){
         // (log(S0) + r*tau - d*tau - 0.5*sigma*sigma*tau)*(1i)*x_arr
