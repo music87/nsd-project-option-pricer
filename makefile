@@ -1,16 +1,18 @@
 CXX = g++
+SRCDIR = src
+TESTDIR = test
 TARGET = fast_fourier_transfrom_call_pricer
-HEADERS = characteristic_functions.h global_variables.h utils.h
+HEADERS = $(SRCDIR)/characteristic_functions.h $(SRCDIR)/global_variables.h $(SRCDIR)/utils.h
 CFLAG = -O3 -Wall -shared -std=c++17 -fPIC
 #PYINCLUDE = `python3 -m pybind11 --includes`
 PYINCLUDE = `python3-config --includes` -Iextern/pybind11/include
 PYSUFFIX = `python3-config --extension-suffix`
 
-.PHONY: run check clean
+.PHONY: test clean
 
 all: $(TARGET)
 
-$(TARGET): $(TARGET).cpp 
+$(TESTDIR)/$(TARGET): $(SRCDIR)/$(TARGET).cpp $(HEADERS)
 	$(CXX) $(CFLAG) $(PYINCLUDE) $< -o $@$(PYSUFFIX)
 
 test: 
@@ -18,3 +20,4 @@ test:
 
 clean:
 	rm -rf *.so .pytest_cache __pycache__ 
+
